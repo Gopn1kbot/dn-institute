@@ -9,7 +9,7 @@
 <rect x="510" y="134.7" width="80" height="255.3" fill="none" stroke="black" stroke-width="2"/>
 <text x="550" y="122.7" text-anchor="middle" font-family="sans-serif" font-size="12">56.7%</text>
 <text x="660" y="378" text-anchor="middle" font-family="sans-serif" font-size="12">0.0%</text>
-<text x="225" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-27: AXM / XL1</text>
-<text x="585" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-28 00:00-05:59: AXM / XL1</text>
+<text x="225" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-27 captured rows: AXM / XL1</text>
+<text x="585" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-28 partial: AXM / XL1</text>
 <text x="450" y="452" text-anchor="middle" font-family="sans-serif" font-size="11">Same fixed-notional rule applied to both markets</text>
 </svg>
