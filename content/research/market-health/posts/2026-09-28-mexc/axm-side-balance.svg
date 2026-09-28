@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430">
 <rect width="100%" height="100%" fill="white"/>
-<text x="380" y="30" text-anchor="middle" font-family="sans-serif" font-size="19">AXM ~$5 events: taker-side balance</text>
+<text x="380" y="30" text-anchor="middle" font-family="sans-serif" font-size="19">AXM ~$5 aggregate trades: taker-side balance</text>
 <line x1="80" y1="350" x2="700" y2="350" stroke="black"/>
-<rect x="180" y="106.0" width="110" height="244.0" fill="none" stroke="black" stroke-width="2"/>
-<text x="235" y="94.0" text-anchor="middle" font-family="sans-serif" font-size="14">244</text>
-<text x="235" y="380" text-anchor="middle" font-family="sans-serif" font-size="13">taker-buy events</text>
-<rect x="470" y="110.0" width="110" height="240.0" fill="none" stroke="black" stroke-width="2"/>
-<text x="525" y="98.0" text-anchor="middle" font-family="sans-serif" font-size="14">240</text>
-<text x="525" y="380" text-anchor="middle" font-family="sans-serif" font-size="13">taker-sell events</text>
-<text x="380" y="408" text-anchor="middle" font-family="sans-serif" font-size="11">absolute buy/sell notional imbalance: 0.83% of gross target turnover</text>
+<rect x="180" y="100.0" width="110" height="250.0" fill="none" stroke="black" stroke-width="2"/>
+<text x="235" y="88.0" text-anchor="middle" font-family="sans-serif" font-size="14">250</text>
+<text x="235" y="380" text-anchor="middle" font-family="sans-serif" font-size="13">taker-buy rows</text>
+<rect x="470" y="104.0" width="110" height="246.0" fill="none" stroke="black" stroke-width="2"/>
+<text x="525" y="92.0" text-anchor="middle" font-family="sans-serif" font-size="14">246</text>
+<text x="525" y="380" text-anchor="middle" font-family="sans-serif" font-size="13">taker-sell rows</text>
+<text x="380" y="408" text-anchor="middle" font-family="sans-serif" font-size="11">absolute buy/sell notional imbalance: 0.81% of gross selected turnover</text>
 </svg>
