@@ -1,19 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="820" height="460" viewBox="0 0 820 460">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470">
 <rect width="100%" height="100%" fill="white"/>
-<text x="410" y="30" text-anchor="middle" font-family="sans-serif" font-size="19">Exact-notional concentration on MEXC, 2026-09-27</text>
-<line x1="65" y1="365" x2="770" y2="365" stroke="black"/>
-<rect x="150" y="181.3440856" width="72" height="183.6559144" fill="none" stroke="black" stroke-width="2"/>
-<text x="186" y="173.3440856" text-anchor="middle" font-family="sans-serif" font-size="13">65.6%</text>
-<text x="186" y="387" text-anchor="middle" font-family="sans-serif" font-size="11">events</text>
-<rect x="240" y="254.6398704" width="72" height="110.36012960000001" fill="none" stroke="black" stroke-width="2"/>
-<text x="276" y="246.6398704" text-anchor="middle" font-family="sans-serif" font-size="13">39.4%</text>
-<text x="276" y="387" text-anchor="middle" font-family="sans-serif" font-size="11">notional</text>
-<rect x="500" y="361.6947736" width="72" height="3.3052264" fill="none" stroke="black" stroke-width="2"/>
-<text x="536" y="353.6947736" text-anchor="middle" font-family="sans-serif" font-size="13">1.2%</text>
-<text x="536" y="387" text-anchor="middle" font-family="sans-serif" font-size="11">events</text>
-<rect x="590" y="361.9140836" width="72" height="3.0859164000000003" fill="none" stroke="black" stroke-width="2"/>
-<text x="626" y="353.9140836" text-anchor="middle" font-family="sans-serif" font-size="13">1.1%</text>
-<text x="626" y="387" text-anchor="middle" font-family="sans-serif" font-size="11">notional</text>
-<text x="230" y="425" text-anchor="middle" font-family="sans-serif" font-size="14">AXM/USDT — $5.00 target</text>
-<text x="580" y="425" text-anchor="middle" font-family="sans-serif" font-size="14">XL1/USDT — top repeated notional</text>
+<text x="450" y="30" text-anchor="middle" font-family="sans-serif" font-size="19">Share of timestamp events within $5.00 +/- $0.01</text>
+<line x1="70" y1="390" x2="850" y2="390" stroke="black"/>
+<line x1="70" y1="60" x2="70" y2="390" stroke="black"/>
+<rect x="150" y="94.8" width="80" height="295.2" fill="none" stroke="black" stroke-width="2"/>
+<text x="190" y="82.8" text-anchor="middle" font-family="sans-serif" font-size="12">65.6%</text>
+<text x="300" y="378" text-anchor="middle" font-family="sans-serif" font-size="12">0.0%</text>
+<rect x="510" y="134.7" width="80" height="255.3" fill="none" stroke="black" stroke-width="2"/>
+<text x="550" y="122.7" text-anchor="middle" font-family="sans-serif" font-size="12">56.7%</text>
+<text x="660" y="378" text-anchor="middle" font-family="sans-serif" font-size="12">0.0%</text>
+<text x="225" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-27: AXM / XL1</text>
+<text x="585" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-28 00:00-05:59: AXM / XL1</text>
+<text x="450" y="452" text-anchor="middle" font-family="sans-serif" font-size="11">Same fixed-notional rule applied to both markets</text>
 </svg>
