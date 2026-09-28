@@ -104,9 +104,25 @@ def validate(summary, events):
 
 def write_csv(path, rows, fields):
     with path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=fields)
+        w = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
+
+def write_summary(path, rows, fields):
+    """Serialize summary.csv deterministically with fixed 8-decimal floats."""
+    float_fields = {
+        "total_notional", "target_event_share", "target_notional",
+        "target_notional_share", "target_buy_notional",
+        "target_sell_notional", "net_to_gross",
+    }
+    with path.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow(fields)
+        for row in rows:
+            w.writerow([
+                f"{float(row[field]):.8f}" if field in float_fields else row[field]
+                for field in fields
+            ])
 
 def export_events(events):
     out=[]
@@ -137,8 +153,8 @@ def svg_concentration(summary):
 <rect x="510" y="{y(a28['target_event_share']):.1f}" width="80" height="{h(a28['target_event_share']):.1f}" fill="none" stroke="black" stroke-width="2"/>
 <text x="550" y="{378-a28['target_event_share']*450:.1f}" text-anchor="middle" font-family="sans-serif" font-size="12">{a28['target_event_share']*100:.1f}%</text>
 <text x="660" y="378" text-anchor="middle" font-family="sans-serif" font-size="12">{x28['target_event_share']*100:.1f}%</text>
-<text x="225" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-27: AXM / XL1</text>
-<text x="585" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-28 00:00-05:59: AXM / XL1</text>
+<text x="225" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-27 captured rows: AXM / XL1</text>
+<text x="585" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-28 partial: AXM / XL1</text>
 <text x="450" y="452" text-anchor="middle" font-family="sans-serif" font-size="11">Same fixed-notional rule applied to both markets</text>
 </svg>
 """
@@ -170,7 +186,7 @@ def main():
     validate(summary,events)
 
     fields=["period","symbol","metric","target_label","trades","events","total_notional","target_events","target_event_share","target_notional","target_notional_share","target_buy_events","target_sell_events","target_mixed_events","target_buy_notional","target_sell_notional","net_to_gross"]
-    write_csv(DATA_DIR/"summary.csv",summary,fields)
+    write_summary(DATA_DIR/"summary.csv",summary,fields)
     write_csv(DATA_DIR/"axm_fixed_notional_events.csv",export_events(events),["period","time_utc","trade_count","buy_count","sell_count","total_qty","notional_usdt"])
     (POST_DIR/"axm-fixed-notional.svg").write_text(svg_concentration(summary),encoding="utf-8")
     (POST_DIR/"axm-side-balance.svg").write_text(svg_balance(events),encoding="utf-8")
