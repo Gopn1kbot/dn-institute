@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470">
 <rect width="100%" height="100%" fill="white"/>
-<text x="450" y="30" text-anchor="middle" font-family="sans-serif" font-size="19">Share of timestamp events within $5.00 +/- $0.01</text>
+<text x="450" y="30" text-anchor="middle" font-family="sans-serif" font-size="19">Share of aggregate-trade rows within $5.00 +/- $0.01</text>
 <line x1="70" y1="390" x2="850" y2="390" stroke="black"/>
 <line x1="70" y1="60" x2="70" y2="390" stroke="black"/>
-<rect x="150" y="94.8" width="80" height="295.2" fill="none" stroke="black" stroke-width="2"/>
-<text x="190" y="82.8" text-anchor="middle" font-family="sans-serif" font-size="12">65.6%</text>
+<rect x="150" y="105.0" width="80" height="285.0" fill="none" stroke="black" stroke-width="2"/>
+<text x="190" y="93.0" text-anchor="middle" font-family="sans-serif" font-size="12">63.3%</text>
 <text x="300" y="378" text-anchor="middle" font-family="sans-serif" font-size="12">0.0%</text>
-<rect x="510" y="134.7" width="80" height="255.3" fill="none" stroke="black" stroke-width="2"/>
-<text x="550" y="122.7" text-anchor="middle" font-family="sans-serif" font-size="12">56.7%</text>
+<rect x="510" y="129.4" width="80" height="260.6" fill="none" stroke="black" stroke-width="2"/>
+<text x="550" y="117.4" text-anchor="middle" font-family="sans-serif" font-size="12">57.9%</text>
 <text x="660" y="378" text-anchor="middle" font-family="sans-serif" font-size="12">0.0%</text>
 <text x="225" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-27 captured rows: AXM / XL1</text>
 <text x="585" y="425" text-anchor="middle" font-family="sans-serif" font-size="12">2026-09-28 partial: AXM / XL1</text>
-<text x="450" y="452" text-anchor="middle" font-family="sans-serif" font-size="11">Same fixed-notional rule applied to both markets</text>
+<text x="450" y="452" text-anchor="middle" font-family="sans-serif" font-size="11">Same row-level fixed-notional rule applied to both markets</text>
 </svg>
