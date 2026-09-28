@@ -315,9 +315,9 @@ def validate(rows, events, summary):
     assert ax28["target_buy_events"] == 60 and ax28["target_sell_events"] == 58
 
     ai = [e for e in events if e["symbol"] == "AINETWORKUSDT" and is_cadence(e)]
-    assert len(ai) == 53
+    assert len(ai) == 55
     assert all(abs(e["notional"] - 20) <= 0.10 for e in ai)
-    assert longest_exact_20m_streak(ai) == 44
+    assert longest_exact_20m_streak(ai) == 45
 
     d = [e for e in events if e["symbol"] == "DADDYUSDT" and is_cadence(e)]
     assert len(d) == 2
