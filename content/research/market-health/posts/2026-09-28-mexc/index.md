@@ -1,90 +1,74 @@
 ---
-title: "Two automation fingerprints on low-cap MEXC spot markets: fixed-$5 turnover and a fixed-clock $20 bot"
-description: "Primary MEXC aggregate-trade data for AXM/USDT and AINETWORK/USDT show two distinct non-organic execution signatures: AXM concentrates about 40% of observed notional in repeated $5 timestamp-level events with nearly flat taker-side balance, while AINETWORK prints approximately $20 bursts on a 20-minute clock. Same-venue controls do not reproduce either pattern."
+title: "Fixed-$5 two-sided turnover on MEXC AXM/USDT"
+description: "Primary MEXC aggregate-trade data show AXM/USDT concentrating about 40% of observed notional in repeated ~$5 timestamp-level events with a nearly flat taker-buy/taker-sell split. A same-rule XL1/USDT control records no $5 events in the committed sample."
 date: 2026-09-28
 entities:
   - MEXC
   - AXM
-  - AINETWORK
 ---
 
 ## Summary
 
-Two low-cap MEXC spot markets show execution patterns that are difficult to explain as ordinary discretionary order flow.
+AXM/USDT on MEXC shows a persistent fixed-notional pattern that is consistent with wash-like automated turnover and merits market-surveillance attention.
 
-**AXM/USDT** repeatedly trades almost exactly **$5 per timestamp-level event**. Across the committed sample (2026-09-27 and the first six UTC hours of 2026-09-28), 484 of 766 timestamp events, or **63.2%**, fall within one cent of $5. Those events carry **$2,419.99**, or **39.7%** of all observed AXM notional. They are almost perfectly two-sided: **244 taker-buy events versus 240 taker-sell events**. Gross target turnover is about $2,420 while the absolute buy/sell notional imbalance is only about **$20 (0.83% of gross)**.
+Across the committed sample—2026-09-27 plus the first six UTC hours of 2026-09-28—**484 of 766 AXM timestamp-level events (63.2%)** total between **$4.99 and $5.01**. Those events carry **$2419.99**, or **39.7%** of all observed AXM notional. Their aggressor-side split is almost flat: **244 taker-buy events versus 240 taker-sell events**. The absolute buy/sell notional imbalance is only **$20.00**, or **0.83% of gross target turnover**.
 
-A same-venue control, **XL1/USDT**, is closely matched on observed activity on 2026-09-27: 612 aggregate trades and $4,668 of notional versus AXM's 581 trades and $4,643. Yet XL1's most common rounded event notional appears in only **7 of 593 events (1.18%)** and carries **1.10%** of observed notional. AXM's concentration is therefore not a generic consequence of low liquidity or the MEXC venue.
+A same-venue comparison market, XL1/USDT, has similar observed activity on 2026-09-27 (612 aggregate trades and about $4.67k notional versus AXM’s 581 trades and about $4.64k). Applying the **same $5.00 +/- $0.01 event rule** to XL1 produces **zero matching events** in either committed window. This comparison shows that the specific AXM pattern is not reproduced by this XL1 sample; it does not by itself establish a venue-wide or low-liquidity baseline.
 
-**AINETWORK/USDT** shows a different signature. The tape repeatedly prints at **second :49 of minutes :07, :27 and :47**, i.e. a 20-minute schedule. The committed sample contains **55** such timestamp events; every one totals between **$19.945 and $20.056**. The longest uninterrupted run is **45 consecutive events exactly 20 minutes apart**, from 2026-09-27 14:47:49 UTC through 2026-09-28 05:27:49 UTC. The activity-matched control **DADDY/USDT** produces only two timestamp events on those same clock slots across the sample.
+Public aggregate trades do not expose beneficial ownership or self-trade identifiers. The result is therefore framed as a **wash-like surveillance signal, not proof of wash trading**.
 
-These are surveillance signals, not identity evidence. The public trade feed cannot show whether the same beneficial owner stood on both sides, whether self-trade prevention was active, or whether risk was transferred between related accounts. AXM's fixed-notional, nearly flat two-sided turnover is **consistent with wash-like automated activity**, but not proof of wash trading. AINETWORK demonstrates scheduled automation much more directly than it demonstrates manipulation.
+## Repeated fixed-notional events
 
-## AXM/USDT: repeated $5 turnover with almost no side imbalance
+Records sharing the same millisecond timestamp are grouped into one event before notional is measured. This avoids treating a single aggressive order that fills against several resting orders at one timestamp as several independent event decisions.
 
-MEXC's aggregate-trade endpoint exposes price, quantity, execution timestamp and whether the buyer was the maker. For this analysis, records sharing the same millisecond timestamp are collapsed into one event before notional is measured. That matters because one aggressive order can execute against multiple resting orders and appear as several aggregate-trade records at the same timestamp.
+The target rule is deliberately simple and identical for target and control: event notional is between **$4.99 and $5.01** inclusive.
 
-On 2026-09-27, AXM produced 558 timestamp events. **366 (65.6%)** total approximately $5 and account for **39.4%** of all observed notional. The same pattern continues in the first six UTC hours of 2026-09-28: **118 of 208 events (56.7%)** are approximately $5 and account for **40.6%** of notional.
+On 2026-09-27, **366 of 558 AXM events (65.6%)** match the rule and carry **39.4%** of observed AXM notional. In the first six UTC hours of 2026-09-28, **118 of 208 events (56.7%)** match and carry **40.6%** of observed notional.
 
-{{< figure src="axm-fixed-notional.svg" alt="AXM versus XL1 exact-notional concentration" caption="Repeated exact-notional concentration on 2026-09-27. AXM/USDT puts 65.6% of timestamp events and 39.4% of observed notional into approximately $5 events. The activity-matched XL1/USDT control puts only 1.18% of events and 1.10% of notional into its most common rounded event size." >}}
+{{< figure src="axm-fixed-notional.svg" alt="AXM versus XL1 share of timestamp events near five USDT" caption="The identical $5.00 +/- $0.01 rule is applied to both markets. AXM repeatedly hits the target window; XL1 has no matching events in either committed window." >}}
 
-The side balance is unusually flat:
+| Window | Market | Aggregate trades | Timestamp events | ~$5 events | Event share | Notional share |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| 2026-09-27 | AXM/USDT | 581 | 558 | 366 | 65.6% | 39.4% |
+| 2026-09-27 | XL1/USDT | 612 | 593 | 0 | 0.0% | 0.0% |
+| 2026-09-28 00:00-05:59 UTC | AXM/USDT | 221 | 208 | 118 | 56.7% | 40.6% |
+| 2026-09-28 00:00-05:59 UTC | XL1/USDT | 170 | 166 | 0 | 0.0% | 0.0% |
 
-| Window | ~$5 events | Taker buys | Taker sells | ~$5 gross turnover | Absolute buy/sell imbalance | Imbalance / gross |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| 2026-09-27 | 366 | 184 | 182 | $1,829.99 | $10.00 | 0.55% |
-| 2026-09-28 00:00-05:59 UTC | 118 | 60 | 58 | $590.00 | $10.00 | 1.69% |
-| **Combined** | **484** | **244** | **240** | **$2,419.99** | **$20.00** | **0.83%** |
+## Two-sided turnover
 
-The repeated value is not simply MEXC's minimum market-order amount. The venue's public `exchangeInfo` response reports `quoteAmountPrecisionMarket = 1` for AXM/USDT; MEXC documents that field as the **minimum order amount in a market order**. The same value is present for the controls in this sample. The committed [`market_rules.csv`](data/market_rules.csv) preserves those responses and source URLs.
+Across both windows there are **244 taker-buy events and 240 taker-sell events** in the ~$5 bucket.
 
-The public tape still leaves an important ambiguity. A strategy that intentionally trades in fixed quote amounts can create this pattern without self-trading. What makes AXM surveillance-worthy is the combination: a dominant exact quote size, persistence across the day boundary, a near-perfect split between aggressive buys and sells, and almost zero net side imbalance while roughly 40% of observed notional passes through the repeated size. Account identifiers or exchange self-trade logs would be needed to turn that footprint into a wash-trading attribution.
+{{< figure src="axm-side-balance.svg" alt="AXM fixed-notional event taker-buy and taker-sell counts" caption="The repeated ~$5 AXM events are nearly balanced by aggressor side across the committed sample." >}}
 
-## AINETWORK/USDT: a $20 event every 20 minutes
+| Window | ~$5 events | Taker buys | Taker sells | Target turnover | Absolute side imbalance |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 2026-09-27 | 366 | 184 | 182 | $1,829.99 | $10.00 |
+| 2026-09-28 00:00-05:59 UTC | 118 | 60 | 58 | $590.00 | $10.00 |
+| **Combined** | **484** | **244** | **240** | **$2,419.99** | **$20.00 (0.83%)** |
 
-AINETWORK carries a different automation fingerprint. Rather than repeating one event size at arbitrary times, the target activity is synchronized to the clock.
+This combination—a dominant fixed quote amount, persistence across a date boundary, and a near-flat aggressor-side split—is consistent with automated turnover designed to generate activity with little directional imbalance. It is stronger as a surveillance signal than fixed-size recurrence alone.
 
-The scheduled slots are:
+## Minimum-order check
 
-- `hh:07:49`
-- `hh:27:49`
-- `hh:47:49`
+The pattern is not simply the venue’s minimum market-order amount. The committed MEXC symbol-rule snapshot reports a **1 USDT** minimum market-order quote amount for both AXM/USDT and XL1/USDT. The repeated AXM value is approximately **5 USDT**, five times that minimum.
 
-At each active slot, one or more aggregate-trade records share the exact millisecond timestamp; their summed notional is approximately **$20**.
+The snapshot and source URLs are preserved in data/market_rules.csv.
 
-{{< figure src="ainetwork-fixed-clock.svg" alt="AINETWORK fixed-clock event notional" caption="AINETWORK/USDT timestamp events on the :07:49, :27:49 and :47:49 schedule. All 55 committed events total within roughly six cents of $20. The dashed reference is $20." >}}
+## What the public tape cannot prove
 
-Across the committed window there are **55** scheduled events. Their notional ranges only from **$19.945455 to $20.056105**. The strongest run begins at 2026-09-27 14:47:49 UTC and continues without a missed 20-minute slot through 2026-09-28 05:27:49 UTC: **45 events, 44 exact 20-minute intervals**.
+A wash-trading finding requires more than a repetitive tape. Public MEXC aggregate trades provide price, quantity, timestamp and buyer-maker side, but they do not identify accounts, beneficial owners or self-trade-prevention events.
 
-For comparison, DADDY/USDT has a similar order of observed activity in the same sample (3,228 aggregate trades versus AINETWORK's 3,746) but produces only **two** timestamp events on those exact three-per-hour clock slots, and neither forms a repeating $20 sequence.
+A benign fixed-notional execution algorithm could also generate repeated $5 events. To escalate this surveillance signal to a manipulation attribution, stronger evidence would be needed: common ownership of both sides, repeated self-matches, negligible risk transfer between related accounts, or order-book/account data tying the turnover to artificial volume creation.
 
-The scheduled activity is clearly automated. Its economic purpose is less clear. Unlike AXM, the AINETWORK sequence is sell-heavy over this short sample, so it should not be described as balanced self-trading. A scheduled execution algorithm, treasury sale, liquidity-management routine, or other legitimate automation could produce fixed-time prints. The useful market-health result is therefore narrower: **time-of-trade plus fixed-notional analysis can identify a deterministic participant that would be nearly invisible to a simple repeated-quantity test**.
-
-## Why the two signatures complement each other
-
-The two markets illustrate why no single wash-trading metric is sufficient.
-
-| Signal | AXM/USDT | AINETWORK/USDT |
-| --- | --- | --- |
-| Dominant fixed quote notional | Very strong: ~$5 | Scheduled events are ~$20 |
-| Taker-side balance | 244 buy / 240 sell target events | Sell-heavy in this window |
-| Net target imbalance | 0.83% of gross | Not wash-like |
-| Fixed clock | Weak | Very strong: 20-minute schedule |
-| Same-venue control reproduces pattern | No | No |
-| Interpretation | Wash-like two-sided automation; identity evidence still required | Deterministic automation; manipulation not established |
-
-AXM is the stronger wash-trading surveillance candidate because the repeated activity is both concentrated and nearly flat by side. AINETWORK is the cleaner example of a time-of-trade detector finding automation that a volume-distribution test alone would miss.
+The conclusion here is therefore intentionally narrower: **AXM/USDT exhibits persistent, highly concentrated, nearly two-sided fixed-$5 turnover that is consistent with wash-like automation and is absent from the same-rule XL1 control sample.**
 
 ## Data and reproducibility
 
-The evidence is committed with this article rather than depending on a live API remaining historically queryable:
-
-- [`data/raw_aggtrades.csv`](data/raw_aggtrades.csv): **8,558** MEXC aggregate-trade records for AXM/USDT, XL1/USDT, AINETWORK/USDT and DADDY/USDT.
-- [`data/summary.csv`](data/summary.csv): per-window headline metrics.
-- [`data/axm_fixed_notional_events.csv`](data/axm_fixed_notional_events.csv): the approximately $5 AXM timestamp events.
-- [`data/ainetwork_fixed_clock_events.csv`](data/ainetwork_fixed_clock_events.csv): the scheduled AINETWORK timestamp events.
-- [`data/market_rules.csv`](data/market_rules.csv): MEXC symbol rules used to check the minimum-order explanation.
-- [`scripts/analyze.py`](scripts/analyze.py): standard-library Python that rebuilds the derived CSVs, figures and validation checks from the committed raw sample.
+- data/raw_aggtrades.csv: **1,584** raw MEXC aggregate-trade records for AXM/USDT and XL1/USDT.
+- data/summary.csv: per-window metrics using the identical fixed-notional rule.
+- data/axm_fixed_notional_events.csv: all AXM events within the $5.00 +/- $0.01 target.
+- data/market_rules.csv: MEXC symbol-rule snapshots and source URLs.
+- scripts/analyze.py: dependency-free Python that rebuilds the derived CSVs and SVG figures from the committed raw sample.
 
 Run:
 
@@ -92,18 +76,16 @@ Run:
 python3 content/research/market-health/posts/2026-09-28-mexc/scripts/analyze.py
 ```
 
-The primary market data comes from MEXC's public, key-less aggregate-trades endpoint:
+The raw sample was collected from MEXC’s public, key-less aggregate-trades endpoint using non-overlapping hourly windows:
 
 ```text
 GET https://api.mexc.com/api/v3/aggTrades
 ```
 
-The sample uses hourly `startTime`/`endTime` requests for 2026-09-27 and for 2026-09-28 00:00-05:59 UTC, with `limit=1000`, then deduplicates by aggregate-trade ID/timestamp/price/quantity. MEXC's official endpoint documentation is [Compressed/Aggregate Trades List](https://www.mexc.com/api-docs/spot-v3/market-data-endpoints/compressedaggregate-trades-list); the symbol-rule interpretation is documented under [Exchange Information](https://www.mexc.com/api-docs/spot-v3/market-data-endpoints/exchange-information).
+The endpoint returned blank aggregate/trade-ID fields in the captured rows. **No aggregate-ID deduplication is claimed or performed.** The committed sample contains no exact duplicate rows under the available fields. Analysis uses every committed row and groups rows sharing the same market, period and millisecond timestamp into timestamp-level events.
 
-Aggressor side is derived from the public `m` field: when the buyer is the maker, the aggressor is a seller; otherwise the aggressor is a buyer. The analysis does **not** infer account ownership from that field.
+MEXC endpoint documentation: [Compressed/Aggregate Trades List](https://www.mexc.com/api-docs/spot-v3/market-data-endpoints/compressedaggregate-trades-list). Symbol-rule semantics: [Exchange Information](https://www.mexc.com/api-docs/spot-v3/market-data-endpoints/exchange-information).
 
-## Scope and limitations
+## Scope
 
-This is a short, venue-specific executed-trade sample, not labelled ground truth. The detection process was exploratory, so the fixed schedules and quote sizes should be treated as effect descriptions rather than post-hoc hypothesis-test p-values. The control pairs reduce the risk of confusing a venue-wide microstructure quirk with a pair-specific signal, but they do not eliminate alternative strategy explanations.
-
-Most importantly, executed trades do not expose beneficial ownership. The data can show repetitive two-sided turnover, clock synchronization and fixed quote amounts; it cannot prove that one entity controlled both sides of a trade. The appropriate conclusion is therefore **non-organic or highly automated activity worthy of surveillance**, with AXM showing a particularly wash-like footprint—not a definitive allegation about the trader or venue.
+The sample is short and exploratory. The $5 target was identified from the observed data and should be treated as an effect description rather than a pre-registered hypothesis. The XL1 comparison controls one similar-activity market, not every MEXC or low-liquidity pair. These limitations are why the article reports a surveillance signal rather than a definitive allegation of wash trading.
